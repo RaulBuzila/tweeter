@@ -31,7 +31,7 @@ function markDone(id) {
 
 function loadTasks() {
     $.ajax({
-        url: 'items?action=list&userid=1'
+        url: 'items?action=list'
     }).done(function (response) {
         listTasks(response.tweets);
     });

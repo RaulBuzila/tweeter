@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
         int found = -1;
         try {
             found = DBOperations.login(u,p);
+            System.out.println("gasit:"+found);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

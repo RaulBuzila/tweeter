@@ -50,12 +50,12 @@ public class ToDoListServlet extends HttpServlet {
         System.out.println("mytask list service called now.");
 
 
-//        HttpSession session = request.getSession(true);
-//        String username=(String)session.getAttribute("username");
-//        if (username == null) {
-//            System.out.println("Nu esti logat");
-//        }
-//        else{
+        HttpSession session = request.getSession(true);
+        String username=(String)session.getAttribute("username");
+        if (username == null) {
+            System.out.println("Nu esti logat");
+        }
+        else{
 
             String action = request.getParameter(ACTION);
 
@@ -68,7 +68,7 @@ public class ToDoListServlet extends HttpServlet {
                 doneAction(request, response);
             }
 
-        //}
+        }
     }
 
 
@@ -80,8 +80,11 @@ public class ToDoListServlet extends HttpServlet {
 
         // call db
         List<TweetBean> l = new LinkedList();
+        HttpSession s = request.getSession();
+        int userid=(Integer)s.getAttribute("userid");
+        System.out.println("userid in list:"+userid);
         try {
-            l=DBOperations.readTweetFeed(Integer.parseInt(request.getParameter("userid")));
+            l=DBOperations.readTweetFeed(userid);
             System.out.println("lungime din db:"+l.size());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
